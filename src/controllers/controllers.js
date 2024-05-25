@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises'
 
+const databasePath = new URL('../db/db.json', import.meta.url)
+
 class RetrieveDatabaseInformation {
     #database = {}
 
@@ -16,3 +18,5 @@ class RetrieveDatabaseInformation {
     }
 
 }
+
+export const Database = new RetrieveDatabaseInformation()
