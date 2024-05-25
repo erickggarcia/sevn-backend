@@ -17,6 +17,14 @@ class RetrieveDatabaseInformation {
         return data
     }
 
+    selectArticleById(table, id) {
+        const data = this.#database[table] ? this.#database[table].find((article) => {
+            return article.id === id
+        })
+        : []
+
+        return data
+    }
 }
 
 export const Database = new RetrieveDatabaseInformation()
