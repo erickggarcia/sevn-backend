@@ -18,8 +18,11 @@ route.get('/articles/secondaryArticles', (_, res) => {
 route.get('/articles/:id', (req, res) => {
     const id = req.params.id
     const data = Database.selectArticleById('articles', Number(id))
-    console.log(data)
-    return res.writeHead(201).end(JSON.stringify(data))
+    if(data) {
+        return res.writeHead(201).end(JSON.stringify(data))
+    } else {
+        return res.writeHead(404).end()
+    }
 })
 
 export default route
