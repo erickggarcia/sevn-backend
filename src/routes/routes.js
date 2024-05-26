@@ -11,7 +11,13 @@ route.get('/articles/mainArticles', (_, res) => {
 
 route.get('/articles/secondaryArticles', (_, res) => {
     const data = Database.selectAll('articles')
-    const secondaryArticles = data.slice(3, Array.from(data).length)
+
+    const limit = 8
+    const tableLenght = Array.from(data).length 
+    const differenceToLimitOfReturn = tableLenght - 3
+    const newTableLenght = differenceToLimitOfReturn > limit ? tableLenght - (differenceToLimitOfReturn - limit) : tableLenght
+
+    const secondaryArticles = data.slice(3, newTableLenght)
     return res.writeHead(201).end(JSON.stringify(secondaryArticles))
 })
 
